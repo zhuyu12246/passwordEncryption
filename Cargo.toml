@@ -1,6 +1,26 @@
 [package]
 name = "passwordEncryption"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+description = "一个安全的密码哈希库，使用 Argon2 算法保护用户密码"
+license = "MIT"
+repository = "https://github.com/yourusername/passwordEncryption"
+documentation = "https://docs.rs/passwordEncryption"
+readme = "README.md"
+keywords = ["password", "hash", "argon2", "security", "encryption"]
+categories = ["cryptography", "authentication"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+# Argon2 密码哈希算法实现
+argon2 = "0.5"
+# 用于生成加密安全的随机数
+rand = "0.8"
+# 用于简化错误处理的宏
+thiserror = "1.0"
+
+[[bin]]
+name = "passwordEncryption"
+path = "src/main.rs"

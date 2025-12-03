@@ -1,30 +1,63 @@
-# Rust 用户密码加密库
+# Password Encryption
 
-## 简介
-这是一个基于 Rust 开发的用户密码加密库，目前还处于初期阶段。该库旨在提供安全、可靠的密码加密和验证功能，方便在 Rust 项目中进行用户身份管理和安全保护。
+[![license](https://badgen.net/badge/license/MIT/blue)](https://github.com/yourusername/passwordEncryption/blob/master/LICENSE)
+[![rust](https://badgen.net/badge/language/Rust/red?icon=rust)](https://www.rust-lang.org/)
 
-## 功能（计划中）
-- 安全的哈希密码存储
-- 密码验证与比对
-- 自动生成和管理随机盐（Salt），提高安全性
-- 支持多种加密算法（如 bcrypt、argon2 等），并可自由切换
-- 可配置加密强度（迭代次数、内存消耗等）
-- 密码策略验证（如最小长度、数字、特殊字符等）
-- 密码哈希升级机制，支持算法或参数更新
-- 安全的常量时间比较，防止时间攻击
-- 随机密码生成器，方便生成初始密码或临时密码
-- 易用的错误处理，区分加密失败、验证失败、参数错误等
-- 可扩展接口，允许自定义加密算法或策略
+一个安全的密码哈希 Rust 库，使用 industry-standard 的 Argon2 算法来保护用户密码。
 
-## 开发计划
-- 完成基本密码加密与验证函数
-- 提供简单易用的库函数接口（API），方便在 Rust 项目中直接调用
-- 添加单元测试和文档
-- 支持更多加密算法和配置选项
-- 持续优化安全性和性能
+## 特性
 
-## 使用示例
-> 尚未实现，未来会提供详细示例
+- 使用 Argon2 算法，这是一种内存硬化的密码哈希函数，被选为 Password Hashing Competition 的获胜者
+- 自动生成加密安全的盐值
+- 提供简单易用的 API 接口
+- 支持密码哈希和验证功能
+- 具有良好的错误处理机制
+
+## 依赖
+
+- [argon2](https://crates.io/crates/argon2) - Argon2 密码哈希算法的 Rust 实现
+- [rand](https://crates.io/crates/rand) - 用于生成加密安全的随机数
+- [thiserror](https://crates.io/crates/thiserror) - 用于简化错误处理的宏
 
 ## 安装
-> 尚未发布，计划在完成基础功能后发布到 crates.io
+
+在你的 `Cargo.toml` 文件中添加以下内容：
+
+```toml
+[dependencies]
+passwordEncryption = "0.1"
+```
+
+## 使用方法
+
+```rust
+use passwordEncryption::{PasswordHasher, Argon2Impl};
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // 创建一个使用 Argon2 算法的密码哈希器实例
+    let hasher = PasswordHasher::new(Box::new(Argon2Impl::default()));
+    
+    let password = "my_secure_password";
+    
+    // 对密码进行哈希处理
+    let hashed = hasher.hash_password(password, "")?;
+    println!("Original password: {}", password);
+    println!("Hashed password: {}", hashed);
+    
+    // 验证正确密码
+    assert!(hasher.verify_password(password, &hashed)?);
+    
+    // 验证错误密码
+    assert!(!hasher.verify_password("wrong_password", &hashed)?);
+    
+    Ok(())
+}
+```
+
+## API 文档
+
+有关详细信息，请参阅 [API documentation](https://docs.rs/passwordEncryption).
+
+## 许可证
+
+本项目采用 MIT 许可证。详情请见 [LICENSE](LICENSE) 文件。
