@@ -7,11 +7,10 @@ pub trait PasswordHasherImpl {
     /// 
     /// # 参数
     /// * `password` - 需要哈希的原始密码
-    /// * `salt` - 盐值，用于增加哈希的随机性
     /// 
     /// # 返回值
     /// 返回哈希后的字符串结果或错误信息
-    fn hash_password(&self, password: &str, salt: &str) -> Result<String, PasswordError>;
+    fn hash_password(&self, password: &str) -> Result<String, PasswordError>;
 
     /// 验证密码与哈希值是否匹配
     /// 

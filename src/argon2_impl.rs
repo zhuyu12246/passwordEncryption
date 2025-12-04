@@ -23,14 +23,14 @@ impl Default for Argon2Impl {
 /// 为 Argon2Impl 实现 PasswordHasherImpl trait
 impl PasswordHasherImpl for Argon2Impl {
     /// 使用 Argon2 算法对密码进行哈希处理
+    /// 会自动生成随机salt 不需要手动指定 更加安全
     /// 
     /// # 参数
     /// * `password` - 需要哈希的原始密码
-    /// * `_salt` - 盐值（注意：此参数在此实现中未使用，因为 Argon2 会自动生成安全的盐值）
     /// 
     /// # 返回值
     /// 返回哈希后的字符串结果或错误信息
-    fn hash_password(&self, password: &str, _salt: &str) -> Result<String, PasswordError> {
+    fn hash_password(&self, password: &str) -> Result<String, PasswordError> {
         // 创建默认的 Argon2 实例
         let argon2 = Argon2::default();
         

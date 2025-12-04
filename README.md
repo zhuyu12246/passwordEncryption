@@ -40,7 +40,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let password = "my_secure_password";
     
     // 对密码进行哈希处理
-    let hashed = hasher.hash_password(password, "")?;
+    let hashed = hasher.hash_password(password)?;
     println!("Original password: {}", password);
     println!("Hashed password: {}", hashed);
     

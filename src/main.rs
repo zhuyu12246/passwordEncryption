@@ -10,10 +10,9 @@ fn main() {
     
     // 定义测试密码
     let password = "my_secure_password";
-    let salt = "salt"; // 在实际实现中，盐值会被忽略，因为我们使用自动生成的安全盐值
     
     // 对密码进行哈希处理
-    match hasher.hash_password(password, salt) {
+    match hasher.hash_password(password) {
         Ok(hashed) => {
             // 输出原始密码和哈希后的密码
             println!("Original password: {}", password);

@@ -42,8 +42,8 @@ impl PasswordHasher {
     /// 
     /// # 返回值
     /// 返回哈希后的字符串结果或错误信息
-    pub fn hash_password(&self, password: &str, salt: &str) -> Result<String, PasswordError> {
-        self.algorithm.hash_password(password, salt)
+    pub fn hash_password(&self, password: &str) -> Result<String, PasswordError> {
+        self.algorithm.hash_password(password)
     }
 
     /// 验证密码与哈希值是否匹配

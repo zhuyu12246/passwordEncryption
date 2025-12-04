@@ -9,10 +9,9 @@ fn test_argon2_hash_and_verify() {
     // 创建 Argon2 算法实例
     let hasher = PasswordHasher::new(Box::new(Argon2Impl::default()));
     let password = "test_password";
-    let salt = "salt";
 
     // 测试哈希生成功能
-    let hashed_result = hasher.hash_password(password, salt);
+    let hashed_result = hasher.hash_password(password);
     assert!(hashed_result.is_ok());
     
     let hashed = hashed_result.unwrap();
@@ -34,10 +33,9 @@ fn test_empty_password() {
     // 创建 Argon2 算法实例
     let hasher = PasswordHasher::new(Box::new(Argon2Impl::default()));
     let password = "";
-    let salt = "";
 
     // 测试空密码的哈希生成
-    let hashed_result = hasher.hash_password(password, salt);
+    let hashed_result = hasher.hash_password(password);
     assert!(hashed_result.is_ok());
     
     let hashed = hashed_result.unwrap();

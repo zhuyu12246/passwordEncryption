@@ -1,6 +1,6 @@
 [package]
 name = "passwordEncryption"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["zhuyu12246"]
 description = "一个安全的密码哈希库，使用 Argon2 算法保护用户密码"
