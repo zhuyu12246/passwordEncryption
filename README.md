@@ -25,7 +25,7 @@
 
 ```toml
 [dependencies]
-passwordEncryption = "0.1"
+passwordEncryption = "0.1.2"
 ```
 
 ## 使用方法
