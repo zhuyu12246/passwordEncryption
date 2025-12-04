@@ -1,3 +1,4 @@
+#![allow(non_snake_case)]
 //! 一个安全的密码哈希库
 //! 
 //! 这个库提供了安全的密码哈希和验证功能，使用 industry-standard 的 Argon2 算法。
